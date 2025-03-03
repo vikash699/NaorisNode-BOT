@@ -27,12 +27,14 @@ class NaorisProtocol:
         for attempt in range(retries):
             try:
                 response = await asyncio.to_thread(
-                    requests.post, url=url, headers=self.headers, data=data, proxy=proxy, timeout=60, impersonate="safari15_5"
+                    requests.post, url=url, headers=self.headers, data=data, proxy=proxy, timeout=60, impersonate="chrome"
                 )
                 
+                print(f"Response Code: {response.status_code}, Response Text: {response.text}")
+                
                 if response.status_code == 403:
-                    self.print_message(address, proxy, Fore.RED, "403 Forbidden: Possible IP Ban. Retrying Without Proxy...")
-                    return await self.user_login(address, proxy=None)
+                    self.print_message(address, proxy, Fore.RED, "403 Forbidden: Possible IP Ban or Wallet Not Whitelisted")
+                    return None
                 
                 if response.status_code == 404:
                     self.print_message(address, proxy, Fore.RED, "Access Token Failed: Join Testnet & Complete Tasks")
