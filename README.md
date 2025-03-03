@@ -26,7 +26,7 @@ Naoris Node Protocol BOT
 
 1. **Clone The Repositories:**
    ```bash
-   git clone https://github.com/vonssy/NaorisNode-BOT.git
+   git clone https://github.com/vikash699/NaorisNode-BOT.git
    ```
    ```bash
    cd NaorisNode-BOT
